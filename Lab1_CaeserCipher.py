@@ -2,8 +2,8 @@
 print("Welcome to Caeser Cipher")
 
 #decrypted/normal key and encrypted key is defined
-dec="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-enc="DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc"
+dec="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ?!.,;:"
+enc="DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc ?!.,;:"
 
 #taking input from user
 print("Do you want to enrcrypt or decrypt the key?")
