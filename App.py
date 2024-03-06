@@ -2,6 +2,7 @@ import streamlit as st
 from Lab1_CaeserCipher import encryption_C,decryption_C
 from Lab2_VigenereCipher import encryption,decryption
 from Lab3_PolyAlphabeticCiphers import encryption_P,decryption_P
+from Lab4_OneTimePadCipher import Encryption_OTP,Decryption_OTP
 
 def caeser_cipher():
     st.title("Caeser Cipher")
@@ -48,10 +49,25 @@ def polyAlphabetic_cipher():
             dec_text = decryption_P(string_user)
             st.write("Decrypted Text:", dec_text)
 
+def OneTimePad_cipher():
+    st.title("One Time Pad Cipher")
+    option = st.radio("Select an option:", ("Encrypt", "Decrypt"))
+    if option == "Encrypt":
+        string_user = st.text_input("Enter text you want to encrypt:")
+        if st.button("Encrypt"):
+            enc_text,key = Encryption_OTP(string_user)
+            st.write("Encrypted Text:", enc_text)
+            st.write("Randomly Generated Key:", key)
+    elif option == "Decrypt":
+        string_user = st.text_input("Enter text you want to decrypt:")
+        key = st.text_input("Enter the key:")
+        if st.button("Decrypt"):
+            dec_text = Decryption_OTP(string_user,key)
+            st.write("Decrypted Text:", dec_text)
 
 def main():
     st.sidebar.title("Select Cipher")
-    selected_cipher = st.sidebar.radio("", ("Caeser Cipher", "Vigenere Cipher","PolyAlphabetic Cipher"))
+    selected_cipher = st.sidebar.radio("", ("Caeser Cipher", "Vigenere Cipher","PolyAlphabetic Cipher","One Time Pad Cipher"))
 
     if selected_cipher == "Caeser Cipher":
         caeser_cipher()
@@ -59,6 +75,8 @@ def main():
         vigenere_cipher()
     elif selected_cipher == "PolyAlphabetic Cipher":
         polyAlphabetic_cipher()
+    elif selected_cipher == "One Time Pad Cipher":
+        OneTimePad_cipher()
 
 if __name__ == "__main__":
     main()
