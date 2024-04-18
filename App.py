@@ -3,6 +3,7 @@ from Lab1_CaeserCipher import encryption_C,decryption_C
 from Lab2_VigenereCipher import encryption,decryption
 from Lab3_PolyAlphabeticCiphers import encryption_P,decryption_P
 from Lab4_OneTimePadCipher import Encryption_OTP,Decryption_OTP
+from Lab5_RailFenceCipher import Encryption_RailFence,Decryption_RailFence
 
 def caeser_cipher():
     st.title("Caeser Cipher")
@@ -65,9 +66,27 @@ def OneTimePad_cipher():
             dec_text = Decryption_OTP(string_user,key)
             st.write("Decrypted Text:", dec_text)
 
+def RailFence_cipher():
+    st.title("Rail Fence Cipher")
+    option = st.radio("Select an option:", ("Encrypt", "Decrypt"))
+    if option == "Encrypt":
+        string_user = st.text_input("Enter text you want to encrypt:")
+        depth=st.number_input('Enter Depth:', min_value=1, value=5, step=1)
+        if st.button("Encrypt"):
+            cipherText = Encryption_RailFence(string_user,depth)
+            st.text(cipherText)
+            st.write("Depth:", depth)
+    elif option == "Decrypt":
+        string_user = st.text_area("Enter text you want to decrypt:")
+        depth=st.number_input('Enter Depth:', min_value=1, value=5, step=1)
+        if st.button("Decrypt"):
+            dec_text = Decryption_RailFence(string_user,depth)
+            st.write("Decrypted Text:", dec_text)
+            st.write("Depth:", depth)
+
 def main():
     st.sidebar.title("Select Cipher")
-    selected_cipher = st.sidebar.radio("", ("Caeser Cipher", "Vigenere Cipher","PolyAlphabetic Cipher","One Time Pad Cipher"))
+    selected_cipher = st.sidebar.radio("", ("Caeser Cipher", "Vigenere Cipher","PolyAlphabetic Cipher","One Time Pad Cipher","Rail Fence Cipher"))
 
     if selected_cipher == "Caeser Cipher":
         caeser_cipher()
@@ -77,6 +96,8 @@ def main():
         polyAlphabetic_cipher()
     elif selected_cipher == "One Time Pad Cipher":
         OneTimePad_cipher()
+    elif selected_cipher == "Rail Fence Cipher":
+        RailFence_cipher()
 
 if __name__ == "__main__":
     main()
